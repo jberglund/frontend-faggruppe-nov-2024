@@ -31,20 +31,20 @@ class TimeElement extends HTMLElement {
     const secondsNormalized = seconds / 60;
 
     // Set CSS custom properties
-    this.style.setProperty('--hours', hours.toString());
-    this.style.setProperty('--minutes', minutes.toString());
-    this.style.setProperty('--seconds', seconds.toString());
-    this.style.setProperty('--hours-normalized', hoursNormalized.toString());
+    this.style.setProperty("--hours", hours.toString());
+    this.style.setProperty("--minutes", minutes.toString());
+    this.style.setProperty("--seconds", seconds.toString());
+    this.style.setProperty("--hours-normalized", hoursNormalized.toString());
     this.style.setProperty(
-      '--minutes-normalized',
+      "--minutes-normalized",
       minutesNormalized.toString()
     );
     this.style.setProperty(
-      '--seconds-normalized',
+      "--seconds-normalized",
       secondsNormalized.toString()
     );
   }
 }
 
 // Register the custom element
-customElements.define('time-variables', TimeElement);
+customElements.define("time-variables", TimeElement);
