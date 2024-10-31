@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+/*
+"Link image nav thingie"
+Se video i /public/hover/example.mov
+
+Här har du två några CSS variabler som uppdateras när pekaren rör sig.
+
+Exempelvis:
+--cursor-x: 1041.000; 
+--cursor-y: 229.000; 
+--cursor-x-normalized: 0.992; 
+--cursor-y-normalized: 0.231;
+
+Dessa kan användas för att skapa en "cursor" som följer pekaren, eller för att skapa en hover-effekt som följer pekaren.
+
+Hints:
+- calc() och var() är bästa vänner
+- pointer-events: none; är användbart för att göra så att elementet inte blockerar andra element
+
+Extra:
+- ::after {content: "Cant touch me!";} är användbart för att skapa en "ghost" element som inte går att interagera med
+- content: attr() kan faktiskt hämta attributer från ett element. 
+- -webkit-text-stroke kan vara användbart. 
+- ...eller testa en mix-blend-mode om du är äventyrlig
+
+*/
+---
+
+<script>
+  import "../webc/cursor-coordinates";
+</script>
+
+<Layout>
+  <cursor-coordinates class="fullscreen">
+    <div class="cursor"></div>
+    <div class="center-content">
+      <div class="links">
+        <div class="item">
+          <h3 class="biiig" data-title="lyttere-i-amfiet-500px">
+            Lyttere i Amfiet
+          </h3>
+          <img
+            class="hover-image"
+            src="/public/hover/lyttere-i-amfiet-500px.png"
+            alt=""
+          />
+        </div>
+
+        <div class="item">
+          <h3 class="biiig" data-title="prosjekt-sikt-1">Prosjekt i Sikt</h3>
+          <img
+            class="hover-image"
+            src="/public/hover/prosjekt-sikt-1.png"
+            alt=""
+          />
+        </div>
+
+        <div class="item">
+          <h3 class="biiig" data-title="prosjekt-svv-1">Prosjekt i SVV</h3>
+          <img
+            class="hover-image"
+            src="/public/hover/prosjekt-svv-1.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </cursor-coordinates>
+</Layout>
+
+<style>
+  .cursor {
+    /* denna är till för att illustrera hur det hela fungerar, och kan gömmas om den inte trengs :D */
+    --size: 20px;
+    width: var(--size);
+    height: var(--size);
+    margin-top: calc(var(--size) / -2);
+    margin-left: calc(var(--size) / -2);
+
+    position: absolute;
+    background-color: red;
+    transform: translate(
+      calc(var(--cursor-x) * 1px),
+      calc(var(--cursor-y) * 1px)
+    );
+    /* denna gör så element bakom kan interageras med. Om inte, så hade detta elementet blockerat :hover på andra element */
+    pointer-events: none;
+  }
+
+  .biiig {
+    font-size: 4rem;
+    font-weight: 800;
+  }
+
+  .links {
+    text-align: center;
+  }
+
+  .fullscreen {
+    display: block;
+    max-height: 100vh;
+    max-width: 100vw;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<script>
+  import "../webc/time-variables";
+</script>
+
+<Layout>
+  <div class="center">
+    <time-variables>
+      <div class="clock">
+        <div class="hour"></div>
+        <div class="minute"></div>
+        <div class="second"></div>
+      </div>
+    </time-variables>
+  </div>
+</Layout>
+
+<style>
+  .clock {
+    border-radius: 50%;
+    height: max(500px, 50vh);
+    aspect-ratio: 1;
+    border: 2px solid;
+  }
+</style>

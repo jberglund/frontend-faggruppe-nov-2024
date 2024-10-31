@@ -1,0 +1,164 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="center">
+    <div class="container">
+      <div class="mosaic-container">
+        {
+          Array.from({ length: 8 }).map((_, i) => (
+            <div class={`${i % 4 ? "even" : "odd"} row`}>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div class="mosaic">
+                  <div class="mosaic-color" />
+                  <div class="mosaic-color mosaic-circle" />
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>
+<style>
+  .container {
+    width: 800px;
+    height: 800px;
+    overflow: hidden;
+    border: 1px solid;
+  }
+
+  :root {
+    --white: #fefefe;
+    --red: #f45757;
+    --grapefruit: #f67f4e;
+    --light-blue: #3d9dcd;
+    --sage: #307d86;
+    --forest: #2e464d;
+    --orange: #e2a330;
+    --yellow: #f0d436;
+    --purple: #3d3f81;
+    --burnt-orange: #9f5a28;
+  }
+
+  .mosaic-container {
+    width: 200%;
+    height: 200%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .row {
+    display: contents;
+  }
+
+  .mosaic {
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+  }
+
+  .mosaic > * {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .mosaic-color {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  .mosaic-circle {
+    border-radius: 50%;
+    overflow: clip;
+    transform: scale(0.7);
+    position: relative;
+    z-index: 2;
+    clip-path: circle(25% at 50% 50%);
+    transform: rotate(90deg);
+  }
+
+  .mosaic-color::before,
+  .mosaic-color::after {
+    content: "";
+    display: block;
+  }
+  .mosaic-color::before {
+    background-color: var(--tone-bg-1);
+  }
+  .mosaic-color::after {
+    background-color: var(--tone-bg-2);
+  }
+
+  .mosaic-circle::before {
+    background-color: var(--tone-fg-1);
+  }
+  .mosaic-circle::after {
+    background-color: var(--tone-fg-2);
+  }
+
+  .row:nth-child(even) .mosaic:nth-child(even) {
+    --tone-bg-1: var(--white);
+    --tone-fg-1: var(--yellow);
+    --tone-bg-2: var(--orange);
+    --tone-fg-2: var(--grapefruit);
+  }
+
+  .row:nth-child(even) .mosaic:nth-child(odd) {
+    --tone-bg-1: var(--yellow);
+    --tone-fg-1: var(--orange);
+    --tone-bg-2: var(--grapefruit);
+    --tone-fg-2: var(--white);
+  }
+
+  .row:nth-child(odd) .mosaic:nth-child(even) {
+    --tone-bg-1: var(--purple);
+    --tone-fg-1: var(--burnt-orange);
+    --tone-bg-2: var(--red);
+    --tone-fg-2: var(--white);
+  }
+
+  .row:nth-child(odd) .mosaic:nth-child(odd) {
+    --tone-bg-1: var(--light-blue);
+    --tone-fg-1: var(--sage);
+    --tone-bg-2: var(--forest);
+    --tone-fg-2: var(--red);
+  }
+
+  .mosaic {
+    animation: move 15s linear infinite;
+    transform-origin: center center;
+  }
+  .row:nth-child(odd) .mosaic {
+    animation: move 15s linear infinite reverse;
+  }
+
+  .mosaic-circle {
+    animation: circle 15s linear infinite;
+  }
+
+  @keyframes circle {
+    0%,
+    5% {
+      rotate: 0deg;
+    }
+    95%,
+    100% {
+      rotate: 360deg;
+    }
+  }
+  @keyframes move {
+    0%,
+    /* 10% */ {
+      transform: translateX(0);
+    }
+    /* 90%, */
+    100% {
+      transform: translateX(-200%);
+    }
+  }
+</style>

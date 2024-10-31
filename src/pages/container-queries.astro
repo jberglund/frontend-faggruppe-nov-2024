@@ -1,0 +1,135 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+/*
+
+"Container queries"
+Detta är en lite mer öppen uppgift, där du får skapa en layout som använder container queries.
+
+Det går att "dra" i höger hörn på korten för att ändra storlek på dem.
+Jag har satt upp exempel så att card-image byter färg vid olika storlekar.
+
+Det som är kul med container queries är att det finns många nya units för dem.
+100cqw är en unit som är 100% av container width.
+100cqh är en unit som är 100% av container height.
+
+Grid + container queries = sant :D
+
+
+Kan du göra så att kortet ser bra ut när det är väldigt litet? Och när det är väldigt stort?
+Kan du ändra layout på kortet så att bilden å texten ligger bredvid varandra när det finns plats?
+
+Kanske du kommer på något helt annat som kan göras? En figur som ändrar utseende beroende på storlek? 
+
+*/
+---
+
+<Layout>
+  <div class="center-content">
+    {
+      Array.from({ length: 3 }).map((_, index) => (
+        <div class="container-card">
+          <div class="card">
+            <div class="card-image" />
+            <div class="card-content">
+              <h3 class="card-title">Ett kort! ett kort!</h3>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
+                itaque, consequatur eaque placeat minus dignissimos illo
+                exercitationem ipsam consectetur eligendi corrupti odio impedit,
+                culpa ut. Magnam quisquam quaerat unde doloremque!
+              </p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Layout>
+<style>
+  :root {
+    --white: #fefefe;
+    --red: #f45757;
+    --grapefruit: #f67f4e;
+    --light-blue: #3d9dcd;
+    --sage: #307d86;
+    --forest: #2e464d;
+    --orange: #e2a330;
+    --yellow: #f0d436;
+    --purple: #3d3f81;
+    --burnt-orange: #9f5a28;
+  }
+
+  .center-content {
+    gap: 2rem;
+  }
+
+  .container-card {
+    resize: both;
+    width: 550px;
+    height: 400px;
+    overflow: auto;
+    container-type: size;
+    display: flex;
+  }
+
+  .card {
+    border: 1px solid #c5c5c5;
+    border-radius: 1rem;
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    justify-content: stretch;
+    padding: 10px;
+    display: grid;
+    gap: 1.5rem;
+
+    grid-auto-rows: max-content;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    background-color: var(--light-blue);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    /* Denna gör så att texten blir mindre när kortet är mindre */
+    font-size: clamp(10px, 3cqw, 1.5rem);
+  }
+
+  @container (width < 400px) {
+    .card {
+    }
+    .card-image {
+      background-color: var(--purple);
+    }
+  }
+
+  @container (width > 400px) {
+    .card-image {
+      background-color: var(--grapefruit);
+    }
+  }
+
+  @container (height < 400px) {
+    .card-image {
+      background-color: var(--red);
+    }
+  }
+
+  .card-title {
+    font-size: 1.25em;
+    color: #333;
+  }
+
+  .card-text {
+    font-family: system-ui;
+    color: #666;
+    line-height: 1.5;
+  }
+</style>
