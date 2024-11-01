@@ -1,10 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
----
 
-<script>
-  import "../webc/time-variables";
-</script>
+/*
+Se på bilder i /public/clocks för inspiration. Skapa en klocka som visar tiden.
+
+Till din hjälp har du ett par variabler som blir satt av `<time-variables>`:
+--hours: 13;
+--minutes: 15;
+--seconds: 24;
+
+- CSS variables
+- calc()
+- transform: rotate()
+- transform-origin
+
+*/
+---
 
 <Layout>
   <div class="center">
@@ -24,5 +35,10 @@ import Layout from "../layouts/Layout.astro";
     height: max(500px, 50vh);
     aspect-ratio: 1;
     border: 2px solid;
+    position: relative;
   }
 </style>
+
+<script>
+  import "../webc/time-variables";
+</script>
