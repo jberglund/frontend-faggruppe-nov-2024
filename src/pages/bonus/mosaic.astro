@@ -1,5 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
+
+// Den här blev helt enkelt för vanskligt. Jag fick så vitt till att göra det själv, så behöver inte utsätta flera för det (:
+// Men den är fint att se på då.
 ---
 
 <Layout>
@@ -102,10 +105,10 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .row:nth-child(even) .mosaic:nth-child(even) {
-    --tone-bg-1: var(--white);
-    --tone-fg-1: var(--yellow);
-    --tone-bg-2: var(--orange);
-    --tone-fg-2: var(--grapefruit);
+    --tone-bg-1: var(--purple);
+    --tone-fg-1: var(--burnt-orange);
+    --tone-bg-2: var(--red);
+    --tone-fg-2: var(--white);
   }
 
   .row:nth-child(even) .mosaic:nth-child(odd) {
@@ -116,10 +119,10 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .row:nth-child(odd) .mosaic:nth-child(even) {
-    --tone-bg-1: var(--purple);
-    --tone-fg-1: var(--burnt-orange);
-    --tone-bg-2: var(--red);
-    --tone-fg-2: var(--white);
+    --tone-bg-1: var(--white);
+    --tone-fg-1: var(--yellow);
+    --tone-bg-2: var(--orange);
+    --tone-fg-2: var(--grapefruit);
   }
 
   .row:nth-child(odd) .mosaic:nth-child(odd) {

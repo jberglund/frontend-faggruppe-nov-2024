@@ -9,11 +9,23 @@ import Card from "../components/Card.astro";
 
 <Layout title="Welcome to Astro.">
   <div class="center-content">
-    <a href="/clock">1. Klocka</a>
-    <a href="/hover">2. Hover!</a>
-    <a href="/container-queries">3. Container queries!</a>
-    <a href="/button">3. The button!</a>
+    <a class="task-link" href="/clock">1. Klocka</a>
+    <a class="task-link" href="/hover">2. Hover!</a>
+    <a class="task-link" href="/container-queries">3. Container queries!</a>
+    <a class="task-link" href="/button">3. The button!</a>
   </div>
 </Layout>
 
-<style></style>
+<style>
+  .center-content {
+    gap: 0.5rem;
+  }
+  .task-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
